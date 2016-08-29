@@ -1,0 +1,17 @@
+<script src="../dist/ajpeg.js"></script>
+<script>
+    (function () {
+
+        //load and replace all alpha-src images
+        AJPEG.parse();
+
+        //load into a canvas
+        new AJPEG().load("assets/rp1_00000.jpg", function () {
+            document.body.appendChild(this.toCanvas());
+        });
+
+    }());
+</script>
+<img alpha-src="assets/rp1_00000.jpg"/>
+
+
