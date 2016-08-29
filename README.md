@@ -1,7 +1,31 @@
 # AJPEG
 This library provides transparency support to JPEG images.
 Use the encoder in GULP to convert a PNG file with transparency into 2 files : a JPG file (without alpha) & a PNG containing the alpha channel only.
-Use the decoder in your web app for image loading and display purpose.
+Use the decoder in your web app for image loading display purpose.
+<table>
+<tr>
+<td>
+<img src="assets/original.png" width="200"/>
+</td>
+<td>
+<img src="assets/compressed.jpg" width="200"/>
+</td>
+<td>
+<img src="assets/alpha.png" width="200"/>
+</td>
+</tr>
+<tr>
+<td>
+Original 88ko
+</td>
+<td>
+Compressed 19ko
+</td>
+<td>
+Alpha 9ko
+</td>
+</tr>
+</table>
 
 ## Install
 ```
