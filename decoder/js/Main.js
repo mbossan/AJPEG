@@ -70,4 +70,8 @@
         return img;
     }
 
+
+    if (typeof module != "undefined")
+        module.exports = AJPEG;
+
 }());

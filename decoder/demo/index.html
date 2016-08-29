@@ -1,4 +1,4 @@
-<script src="../dist/ajpeg.js"></script>
+<script src="../dist/ajpeg.min.js" type="application/javascript"></script>
 <script>
     (function () {
 
@@ -8,6 +8,13 @@
         //load into a canvas
         new AJPEG().load("assets/rp1_00000.jpg", function () {
             document.body.appendChild(this.toCanvas());
+        });
+
+        //load into a canvas
+        new AJPEG().load("assets/rp1_00000.jpg", function () {
+            var newImg = document.createElement('img');
+            newImg.src = this.toDataURL();
+            document.body.appendChild(newImg);
         });
 
     }());
