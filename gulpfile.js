@@ -1,6 +1,12 @@
 const gulp = require('gulp'),
-    npmPublish = require('gulp-npm-publish');
+    version = require('./gulp.version');
 
-gulp.task('npm:publish', function () {
-    return npmPublish();
+gulp.task('patch', function () {
+    return version('patch');
+});
+gulp.task('feature', function () {
+    return version('minor');
+});
+gulp.task('release', function () {
+    return version('major');
 });
