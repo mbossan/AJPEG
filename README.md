@@ -5,17 +5,6 @@ Use the decoder in your web app for image loading display purpose.
 <table>
 <tr>
 <td>
-<img src="assets/original.png" width="200"/>
-</td>
-<td>
-<img src="assets/compressed.jpg" width="200"/>
-</td>
-<td>
-<img src="assets/alpha.png" width="200"/>
-</td>
-</tr>
-<tr>
-<td>
 Original 88ko
 </td>
 <td>
@@ -23,6 +12,17 @@ Compressed 19ko
 </td>
 <td>
 Alpha 9ko
+</td>
+</tr>
+<tr>
+<td>
+<img src="assets/original.png" width="200"/>
+</td>
+<td>
+<img src="assets/compressed.jpg" width="200"/>
+</td>
+<td>
+<img src="assets/alpha.png" width="200"/>
 </td>
 </tr>
 </table>
