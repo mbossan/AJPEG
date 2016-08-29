@@ -1,6 +1,6 @@
 {
   "name": "ajpeg",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Alpha-JPEG",
   "main": "encoder/index.js",
   "scripts": {
