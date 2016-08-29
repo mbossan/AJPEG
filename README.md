@@ -1,9 +1,11 @@
-# AJPEG
-This library provides transparency support to JPEG images.
+# AJPEG  (Alpha-JPEG)
+PNG File size can be a hassle. This library provides transparency support to JPEG images allowing you to get lightweight images and speed up your page load.
 
-Use the encoder in GULP to convert a PNG file with transparency into 2 files : a JPG file (without alpha) & a PNG containing the alpha channel only.
+AJPEG `GULP` encoder allows you to split PNG file into 2 separate files : 
+- a JPEG file without transparency that you can compress
+- a PNG file containing the alpha channel only
 
-Use the decoder in your web app for image loading display purpose.
+The decoder loads the 2 files and fast restore the alpha channel using native html `canvas` composite operation.
 
 <table>
 <tr>
