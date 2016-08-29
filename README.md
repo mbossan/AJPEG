@@ -16,13 +16,13 @@ Alpha 9ko
 </tr>
 <tr>
 <td>
-<img src="assets/original.png" width="200"/>
+<img src="assets/original.png" width="200" style="background:transparent"/>
 </td>
 <td>
-<img src="assets/compressed.jpg" width="200"/>
+<img src="assets/compressed.jpg" width="200" style="background:transparent"/>
 </td>
 <td>
-<img src="assets/alpha.png" width="200"/>
+<img src="assets/alpha.png" width="200" style="background:transparent"/>
 </td>
 </tr>
 </table>
