@@ -19,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/mbossan/AJPEG/issues"
   },
-  "homepage": "https://github.com/mbossan/AJPEG#readme"
+  "homepage": "https://github.com/mbossan/AJPEG#readme",
+  "dependencies": {
+    "event-stream": "^3.3.4",
+    "gulp-flatmap": "^1.0.0",
+    "gulp-gm": "0.0.8",
+    "gulp-util": "^3.0.7",
+    "pngjs": "^3.0.0"
+  }
 }
