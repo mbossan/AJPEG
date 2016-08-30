@@ -19,7 +19,21 @@ var plugin = function (opts) {
     var task = foreach(function (stream, file) {
         filescount++;
 
-        var export_jpg_stream = stream.pipe(gm(function (gmfile, done) {
+        var export_jpg_stream = stream.pipe(es.map(function (file, cb) {
+            var png = PNG.sync.read(file.contents);
+            for (var y = 0; y < png.height; y++) {
+                for (var x = 0; x < png.width; x++) {
+                    var idx = (png.width * y + x) << 2;
+                    if (png.data[idx + 3] == 0) {
+                        for (var i = 0; i < 3; i++) {
+                            png.data[idx + i] = 0x00;
+                        }
+                    }
+                }
+            }
+            file.contents = PNG.sync.write(png);
+            cb(null, file);
+        })).pipe(gm(function (gmfile, done) {
             gmfile
                 .setFormat('jpg')
                 .quality(quality);
