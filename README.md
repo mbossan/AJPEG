@@ -31,6 +31,7 @@ Alpha 9ko
 </td>
 </tr>
 </table>
+<sub>(Ford Mustang illustration by Pramod Kabadi https://dribbble.com/shots/2755797-Ford-Mustang-vector-illustration)</sub>
 
 ## Demo
 https://mbossan.github.io/AJPEG/
