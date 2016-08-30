@@ -1,0 +1,22 @@
+<script src="assets/ajpeg.min.js" type="application/javascript"></script>
+<script>
+    (function () {
+
+        //load and replace all alpha-src images
+        AJPEG.parse();
+
+        //load into a canvas
+        new AJPEG().load("assets/fordmustang.jpg", function () {
+            document.body.appendChild(this.toCanvas());
+        });
+
+        //load into a canvas
+        new AJPEG().load("assets/fordmustang.jpg", function () {
+            var newImg = document.createElement('img');
+            newImg.src = this.toDataURL();
+            document.body.appendChild(newImg);
+        });
+
+    }());
+</script>
+<img alpha-src="assets/fordmustang.jpg"/>
