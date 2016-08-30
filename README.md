@@ -10,17 +10,6 @@ The decoder loads the 2 files and fast restore the alpha channel using native ht
 <table>
 <tr>
 <td>
-Original 88ko
-</td>
-<td>
-Compressed 19ko
-</td>
-<td>
-Alpha 9ko
-</td>
-</tr>
-<tr>
-<td>
 <img src="assets/original.png" width="200" style="background:transparent"/>
 </td>
 <td>
@@ -28,6 +17,17 @@ Alpha 9ko
 </td>
 <td>
 <img src="assets/alpha.png" width="200" style="background:red"/>
+</td>
+</tr>
+<tr>
+<td>
+Original 88ko
+</td>
+<td>
+Compressed 19ko
+</td>
+<td>
+Alpha 9ko
 </td>
 </tr>
 </table>
