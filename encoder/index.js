@@ -34,7 +34,7 @@ var plugin = function (opts) {
                 for (var x = 0; x < png.width; x++) {
                     var idx = (png.width * y + x) << 2;
                     for (var i = 0; i < 3; i++) {
-                        png.data[idx + i] = 0xff;
+                        png.data[idx + i] = 0x00;
                     }
                 }
             }
