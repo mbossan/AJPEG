@@ -32,6 +32,9 @@ Alpha 9ko
 </tr>
 </table>
 
+## Demo
+https://mbossan.github.io/AJPEG/
+
 ## Install
 ```
 $ npm install --save-dev ajpeg
