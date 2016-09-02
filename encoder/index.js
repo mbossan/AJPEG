@@ -22,6 +22,7 @@ var plugin = function (opts) {
         return stream.pipe(es.map(function (file, cb) {
             var png = PNG.sync.read(file.contents);
             var data = new Buffer(4 * png.width * png.height * 2);
+
             for (var y = 0; y < png.height; y++) {
                 for (var x = 0; x < png.width; x++) {
                     var idx = (png.width * y + x) << 2;
@@ -37,17 +38,17 @@ var plugin = function (opts) {
                 }
             }
 
-            var png2 = PNG.sync.read(file.contents);
-            for (var y = 0; y < png2.height; y++) {
-                for (var x = 0; x < png2.width; x++) {
-                    var idx = (png2.width * y + x) << 2;
-                    var idx2 = (png2.width * (y + png2.height) + x) << 2;
+            for (var y = 0; y < png.height; y++) {
+                for (var x = 0; x < png.width; x++) {
+                    var idx = (png.width * y + x) << 2;
+                    var idx2 = (png.width * (y + png.height) + x) << 2;
                     for (var i = 0; i < 3; i++) {
-                        data[idx2 + i] = 0xff - png2.data[idx + 3];
+                        data[idx2 + i] = png.data[idx + 3];
                     }
-                    data[idx2 + 3] = (0xff);
+                    data[idx2 + 3] = 0xff;
                 }
             }
+
             png.data = data;
             png.height = png.height * 2;
             file.contents = PNG.sync.write(png);
