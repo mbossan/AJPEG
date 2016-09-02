@@ -19,18 +19,37 @@ var plugin = function (opts) {
     var task = foreach(function (stream, file) {
         filescount++;
 
-        var export_jpg_stream = stream.pipe(es.map(function (file, cb) {
+        return stream.pipe(es.map(function (file, cb) {
             var png = PNG.sync.read(file.contents);
+            var data = new Buffer(4 * png.width * png.height * 2);
             for (var y = 0; y < png.height; y++) {
                 for (var x = 0; x < png.width; x++) {
                     var idx = (png.width * y + x) << 2;
                     if (png.data[idx + 3] == 0) {
                         for (var i = 0; i < 3; i++) {
-                            png.data[idx + i] = 0x00;
+                            data[idx + i] = 0x00;
+                        }
+                    } else {
+                        for (var i = 0; i < 3; i++) {
+                            data[idx + i] = png.data[idx + i];
                         }
                     }
                 }
             }
+
+            var png2 = PNG.sync.read(file.contents);
+            for (var y = 0; y < png2.height; y++) {
+                for (var x = 0; x < png2.width; x++) {
+                    var idx = (png2.width * y + x) << 2;
+                    var idx2 = (png2.width * (y + png2.height) + x) << 2;
+                    for (var i = 0; i < 3; i++) {
+                        data[idx2 + i] = 0xff - png2.data[idx + 3];
+                    }
+                    data[idx2 + 3] = (0xff);
+                }
+            }
+            png.data = data;
+            png.height = png.height * 2;
             file.contents = PNG.sync.write(png);
             cb(null, file);
         })).pipe(gm(function (gmfile, done) {
@@ -40,23 +59,6 @@ var plugin = function (opts) {
             done(null, gmfile);
         }));
 
-        var export_mask_stream = stream.pipe(es.map(function (file, cb) {
-            var bn = path.basename(file.path, path.extname(file.path));
-            file.path = file.path.replace(bn, bn + '@mask');
-            var png = PNG.sync.read(file.contents);
-            for (var y = 0; y < png.height; y++) {
-                for (var x = 0; x < png.width; x++) {
-                    var idx = (png.width * y + x) << 2;
-                    for (var i = 0; i < 3; i++) {
-                        png.data[idx + i] = 0x00;
-                    }
-                }
-            }
-            file.contents = PNG.sync.write(png);
-            cb(null, file);
-        }));
-
-        return es.merge(export_jpg_stream, export_mask_stream);
     });
 
     task.on('pipe', function () {

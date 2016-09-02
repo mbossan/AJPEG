@@ -6,27 +6,14 @@
 
         self.load = function (src, cb) {
             function onAllLoaded() {
-                if (!self.mask.loaded || !self.img.loaded)
-                    return;
-
                 cb.call(self);
             }
 
             self.img = loadImage(src, onAllLoaded.bind(self));
-            self.mask = loadImage(src.replace('.jpg', "@mask.png"), onAllLoaded.bind(self));
         };
 
         self.toDataURL = function () {
-            var imagecanvas = document.createElement('canvas');
-            var imagecontext = imagecanvas.getContext('2d');
-
-            imagecanvas.width = self.img.width;
-            imagecanvas.height = self.img.height;
-
-            imagecontext.drawImage(self.mask, 0, 0, self.img.width, self.img.height);
-            imagecontext.globalCompositeOperation = 'source-atop';
-            imagecontext.drawImage(self.img, 0, 0);
-            return imagecanvas.toDataURL();
+            return self.toCanvas().toDataURL();
         };
 
         self.toCanvas = function () {
@@ -34,11 +21,11 @@
             var imagecontext = imagecanvas.getContext('2d');
 
             imagecanvas.width = self.img.width;
-            imagecanvas.height = self.img.height;
+            imagecanvas.height = self.img.height/2;
 
-            imagecontext.drawImage(self.mask, 0, 0, self.img.width, self.img.height);
-            imagecontext.globalCompositeOperation = 'source-atop';
-            imagecontext.drawImage(self.img, 0, 0);
+            imagecontext.drawImage(self.img, 0, self.img.height / 2, self.img.width, self.img.height/2,0,0,self.img.width, self.img.height/2);
+            imagecontext.globalCompositeOperation = "lighter";
+            imagecontext.drawImage(self.img, 0, 0, self.img.width, self.img.height/2,0,0,self.img.width, self.img.height/2);
             return imagecanvas;
         };
     };

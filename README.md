@@ -1,11 +1,11 @@
-# AJPEG  (Alpha-JPEG)
+# AJPEG  (Alpha-JPEG) v2
 PNG File size can be a hassle. This library provides transparency support to JPEG images allowing you to get lightweight images and speed up your page load.
 
-AJPEG `GULP` encoder allows you to split PNG file into 2 separate files : 
-- a JPEG file without transparency that you can compress
-- a PNG file containing the alpha channel only
+AJPEG `GULP` encoder create an image twice the height of the original containing : 
+- the image without transparency
+- the mask (alpha channel converted to a black to white interpolation)
 
-The decoder loads the 2 files and fast restore the alpha channel using native html `canvas` composite operation.
+The decoder loads the file and fast restore the alpha channel using native html `canvas` composite operation.
 
 <table>
 <tr>
@@ -15,19 +15,13 @@ The decoder loads the 2 files and fast restore the alpha channel using native ht
 <td>
 <img src="assets/compressed.jpg" width="200" style="background:transparent"/>
 </td>
-<td>
-<img src="assets/alpha.png" width="200" style="background:red"/>
-</td>
 </tr>
 <tr>
 <td>
 Original 88ko
 </td>
 <td>
-Compressed 19ko
-</td>
-<td>
-Alpha 9ko
+Compressed 23ko
 </td>
 </tr>
 </table>
@@ -93,13 +87,13 @@ const AJPEG = require('decoder/dist/ajpeg.min');
 ### Usage
 Load into a Canvas
 ```js
-new AJPEG().load("assets/rp1_00000.jpg", function () {
+new AJPEG().load("assets/mustang.jpg", function () {
     document.body.appendChild(this.toCanvas());
 });
 ```
 Load into an Image
 ```js
-new AJPEG().load("assets/rp1_00000.jpg", function () {
+new AJPEG().load("assets/mustang.jpg", function () {
     var newImg = document.createElement('img');
     newImg.src = this.toDataURL();
     document.body.appendChild(newImg);
@@ -107,7 +101,7 @@ new AJPEG().load("assets/rp1_00000.jpg", function () {
 ```
 Autoload via html attribute parsing
 ```html
-<img alpha-src="assets/rp1_00000.jpg"/>
+<img alpha-src="assets/mustang.jpg"/>
 <script>
 AJPEG.parse();
 </script>
